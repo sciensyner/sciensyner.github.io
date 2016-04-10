@@ -1,0 +1,1932 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>game ideas</title>
+<style type="text/css">
+    li { list-style: none;  margin: 0; }
+    p { margin: 0; }
+    span.foldopened { color: white; font-size: xx-small;
+    border-width: 1; font-family: monospace; padding: 0em 0.25em 0em 0.25em; background: #e0e0e0;
+    VISIBILITY: visible;
+    cursor:pointer; }
+
+
+    span.foldclosed { color: #666666; font-size: xx-small;
+    border-width: 1; font-family: monospace; padding: 0em 0.25em 0em 0.25em; background: #e0e0e0;
+    VISIBILITY: hidden;
+    cursor:pointer; }
+
+    span.foldspecial { color: #666666; font-size: xx-small; border-style: none solid solid none;
+    border-color: #CCCCCC; border-width: 1; font-family: sans-serif; padding: 0em 0.1em 0em 0.1em; background: #e0e0e0;
+    cursor:pointer; }
+
+    span.l { color: red; font-weight: bold; }
+
+    a.mapnode:link {text-decoration: none; color: black; }
+    a.mapnode:visited {text-decoration: none; color: black; }
+    a.mapnode:active {text-decoration: none; color: black; }
+    a.mapnode:hover {text-decoration: none; color: black; background: #eeeee0; }
+
+</style>
+<!-- ^ Position is not set to relative / absolute here because of Mozilla -->
+</head>
+<body>
+
+<script type="text/javascript">
+   // Here we implement folding. It works fine with MSIE5.5, MSIE6.0 and
+   // Mozilla 0.9.6.
+
+   if (document.layers) {
+      //Netscape 4 specific code
+      pre = 'document.';
+      post = ''; }
+   if (document.getElementById) {
+      //Netscape 6 specific code
+      pre = 'document.getElementById("';
+      post = '").style'; }
+   if (document.all) {
+      //IE4+ specific code
+      pre = 'document.all.';
+      post = '.style'; }
+
+function layer_exists(layer) {
+   try {
+      eval(pre + layer + post);
+      return true; }
+   catch (error) {
+      return false; }}
+
+function show_layer(layer) {
+   eval(pre + layer + post).position = 'relative'; 
+   eval(pre + layer + post).visibility = 'visible'; }
+
+function hide_layer(layer) {
+   eval(pre + layer + post).visibility = 'hidden';
+   eval(pre + layer + post).position = 'absolute'; }
+
+function hide_folder(folder) {
+    hide_folding_layer(folder)
+    show_layer('show'+folder);
+
+    scrollBy(0,0); // This is a work around to make it work in Browsers (Explorer, Mozilla)
+}
+
+function show_folder(folder) {
+    // Precondition: all subfolders are folded
+
+    show_layer('hide'+folder);
+    hide_layer('show'+folder);
+    show_layer('fold'+folder);
+
+    scrollBy(0,0); // This is a work around to make it work in Browsers (Explorer, Mozilla)
+
+    var i;
+    for (i=1; layer_exists('fold'+folder+'_'+i); ++i) {
+       show_layer('show'+folder+'_'+i); }
+}
+function show_folder_completely(folder) {
+    // Precondition: all subfolders are folded
+
+    show_layer('hide'+folder);
+    hide_layer('show'+folder);
+    show_layer('fold'+folder);
+
+    scrollBy(0,0); // This is a work around to make it work in Browsers (Explorer, Mozilla)
+
+    var i;
+    for (i=1; layer_exists('fold'+folder+'_'+i); ++i) {
+       show_folder_completely(folder+'_'+i); }
+}
+
+
+
+function hide_folding_layer(folder) {
+   var i;
+   for (i=1; layer_exists('fold'+folder+'_'+i); ++i) {
+       hide_folding_layer(folder+'_'+i); }
+
+   hide_layer('hide'+folder);
+   hide_layer('show'+folder);
+   hide_layer('fold'+folder);
+
+   scrollBy(0,0); // This is a work around to make it work in Browsers (Explorer, Mozilla)
+}
+
+function fold_document() {
+   var i;
+   var folder = '1';
+   for (i=1; layer_exists('fold'+folder+'_'+i); ++i) {
+       hide_folder(folder+'_'+i); }
+}
+
+function unfold_document() {
+   var i;
+   var folder = '1';
+   for (i=1; layer_exists('fold'+folder+'_'+i); ++i) {
+       show_folder_completely(folder+'_'+i); }
+}
+
+</script>
+<SPAN class="foldspecial" onclick="fold_document()">All +</SPAN>
+<SPAN class="foldspecial" onclick="unfold_document()">All -</SPAN>
+<p>game ideas
+<ul><li><span id="show1_1" class="foldclosed" onClick="show_folder('1_1')" style="POSITION: absolute">+</span> <span id="hide1_1" class="foldopened" onClick="hide_folder('1_1')">-</span>
+<span style="font-family: Monospaced, sans-serif; ">sciama</span>
+<ul id="fold1_1" style="POSITION: relative; VISIBILITY: visible;"><li>no complete prototype yet
+
+</li>
+<li>web game/portal
+
+</li>
+<li>sciama
+<ul><li><span id="show1_1_1" class="foldclosed" onClick="show_folder('1_1_1')" style="POSITION: absolute">+</span> <span id="hide1_1_1" class="foldopened" onClick="hide_folder('1_1_1')">-</span>
+&nbsp;
+<ul id="fold1_1_1" style="POSITION: relative; VISIBILITY: visible;"><li>payWhatYouWant page ( createMMOPrototype) ( python - unity3d )
+
+</li>
+<li><span id="show1_1_1_1" class="foldclosed" onClick="show_folder('1_1_1_1')" style="POSITION: absolute">+</span> <span id="hide1_1_1_1" class="foldopened" onClick="hide_folder('1_1_1_1')">-</span>
+games
+<ul id="fold1_1_1_1" style="POSITION: relative; VISIBILITY: visible;"><li>every game has its own world
+
+</li>
+<li>every world is a web version of the game
+
+</li>
+<li>every world has parts or modules
+<ul><li><span id="show1_1_1_1_1" class="foldclosed" onClick="show_folder('1_1_1_1_1')" style="POSITION: absolute">+</span> <span id="hide1_1_1_1_1" class="foldopened" onClick="hide_folder('1_1_1_1_1')">-</span>
+modules
+<ul id="fold1_1_1_1_1" style="POSITION: relative; VISIBILITY: visible;"><li>blog
+
+</li>
+<li><span id="show1_1_1_1_1_1" class="foldclosed" onClick="show_folder('1_1_1_1_1_1')" style="POSITION: absolute">+</span> <span id="hide1_1_1_1_1_1" class="foldopened" onClick="hide_folder('1_1_1_1_1_1')">-</span>
+forum
+<ul id="fold1_1_1_1_1_1" style="POSITION: relative; VISIBILITY: visible;"><li>neuronoPrototype
+
+</li>
+
+</ul>
+</li>
+<li>news
+
+</li>
+<li><span id="show1_1_1_1_1_2" class="foldclosed" onClick="show_folder('1_1_1_1_1_2')" style="POSITION: absolute">+</span> <span id="hide1_1_1_1_1_2" class="foldopened" onClick="hide_folder('1_1_1_1_1_2')">-</span>
+game
+<ul id="fold1_1_1_1_1_2" style="POSITION: relative; VISIBILITY: visible;"><li>PayAfterPlay on Linux, WebGL, Android
+
+</li>
+<li><span id="show1_1_1_1_1_2_1" class="foldclosed" onClick="show_folder('1_1_1_1_1_2_1')" style="POSITION: absolute">+</span> <span id="hide1_1_1_1_1_2_1" class="foldopened" onClick="hide_folder('1_1_1_1_1_2_1')">-</span>
+extraContent Store
+<ul id="fold1_1_1_1_1_2_1" style="POSITION: relative; VISIBILITY: visible;"><li><span id="show1_1_1_1_1_2_1_1" class="foldclosed" onClick="show_folder('1_1_1_1_1_2_1_1')" style="POSITION: absolute">+</span> <span id="hide1_1_1_1_1_2_1_1" class="foldopened" onClick="hide_folder('1_1_1_1_1_2_1_1')">-</span>
+noMoney
+<ul id="fold1_1_1_1_1_2_1_1" style="POSITION: relative; VISIBILITY: visible;"><li>pay with assets
+
+</li>
+<li>pay with games
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_1_1_1_1_2_1_2" class="foldclosed" onClick="show_folder('1_1_1_1_1_2_1_2')" style="POSITION: absolute">+</span> <span id="hide1_1_1_1_1_2_1_2" class="foldopened" onClick="hide_folder('1_1_1_1_1_2_1_2')">-</span>
+pay what you think is worth ( PayAfterPlay )
+<ul id="fold1_1_1_1_1_2_1_2" style="POSITION: relative; VISIBILITY: visible;"><li>bitcoin
+
+</li>
+<li>paypal
+
+</li>
+<li>google
+
+</li>
+<li>other payment gateways
+<ul><li>flattr
+
+</li>
+<li>amazon
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li>after a milestones on sales or time is met the source code will be released unlicenced
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li>there will be an HTML vertion too for search engine and unsupported browsers
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_1_1_2" class="foldclosed" onClick="show_folder('1_1_1_2')" style="POSITION: absolute">+</span> <span id="hide1_1_1_2" class="foldopened" onClick="hide_folder('1_1_1_2')">-</span>
+unfinished games ( early access )
+<ul id="fold1_1_1_2" style="POSITION: relative; VISIBILITY: visible;"><li>download prototype
+
+</li>
+<li>help with assets
+
+</li>
+<li>help preOrdering extra content
+
+</li>
+<li>let users vote for most wanted feature of the game
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li>app
+<ul><li><span id="show1_1_2" class="foldclosed" onClick="show_folder('1_1_2')" style="POSITION: absolute">+</span> <span id="hide1_1_2" class="foldopened" onClick="hide_folder('1_1_2')">-</span>
+overworld
+<ul id="fold1_1_2" style="POSITION: relative; VISIBILITY: visible;"><li><span id="show1_1_2_1" class="foldclosed" onClick="show_folder('1_1_2_1')" style="POSITION: absolute">+</span> <span id="hide1_1_2_1" class="foldopened" onClick="hide_folder('1_1_2_1')">-</span>
+character interaction
+<ul id="fold1_1_2_1" style="POSITION: relative; VISIBILITY: visible;"><li>redHead
+<ul><li>goTo a game stage
+
+</li>
+
+</ul>
+</li>
+<li>littleGirl
+<ul><li>about info, credits
+
+</li>
+
+</ul>
+</li>
+<li>maleCharacter
+<ul><li>blog, news platform stage
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span id="show1_1_2_2" class="foldclosed" onClick="show_folder('1_1_2_2')" style="POSITION: absolute">+</span> <span id="hide1_1_2_2" class="foldopened" onClick="hide_folder('1_1_2_2')">-</span>
+render titleBased island
+<ul id="fold1_1_2_2" style="POSITION: relative; VISIBILITY: visible;"><li>draw island
+
+</li>
+<li>make titleSet system
+
+</li>
+<li>get titleSets
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span id="show1_1_3" class="foldclosed" onClick="show_folder('1_1_3')" style="POSITION: absolute">+</span> <span id="hide1_1_3" class="foldopened" onClick="hide_folder('1_1_3')">-</span>
+stages
+<ul id="fold1_1_3" style="POSITION: relative; VISIBILITY: visible;"><li>blog, news
+
+</li>
+<li>game
+
+</li>
+<li>platfom proofOfConcept
+
+</li>
+
+</ul>
+</li>
+<li>make rpg character
+
+</li>
+<li><span id="show1_1_4" class="foldclosed" onClick="show_folder('1_1_4')" style="POSITION: absolute">+</span> <span id="hide1_1_4" class="foldopened" onClick="hide_folder('1_1_4')">-</span>
+features
+<ul id="fold1_1_4" style="POSITION: relative; VISIBILITY: visible;"><li><span id="show1_1_4_1" class="foldclosed" onClick="show_folder('1_1_4_1')" style="POSITION: absolute">+</span> <span id="hide1_1_4_1" class="foldopened" onClick="hide_folder('1_1_4_1')">-</span>
+mmo
+<ul id="fold1_1_4_1" style="POSITION: relative; VISIBILITY: visible;"><li>realTime chat
+
+</li>
+
+</ul>
+</li>
+<li>platform game
+
+</li>
+<li><span id="show1_1_4_2" class="foldclosed" onClick="show_folder('1_1_4_2')" style="POSITION: absolute">+</span> <span id="hide1_1_4_2" class="foldopened" onClick="hide_folder('1_1_4_2')">-</span>
+overworld
+<ul id="fold1_1_4_2" style="POSITION: relative; VISIBILITY: visible;"><li>game directory
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_1_4_3" class="foldclosed" onClick="show_folder('1_1_4_3')" style="POSITION: absolute">+</span> <span id="hide1_1_4_3" class="foldopened" onClick="hide_folder('1_1_4_3')">-</span>
+neurono
+<ul id="fold1_1_4_3" style="POSITION: relative; VISIBILITY: visible;"><li>blog
+
+</li>
+<li>comments
+
+</li>
+
+</ul>
+</li>
+<li>make interactions like a prompt to press a button on sciama
+<ul><li>make a chat bubble
+<ul><li>find bubble assets
+
+</li>
+<li>fetch bubble text from the server
+
+</li>
+
+</ul>
+</li>
+<li>make a selection menu
+<ul><li>pop animated squares for selection
+
+</li>
+<li>one square to enter world another to cancel like an X
+
+</li>
+
+</ul>
+</li>
+<li>make news world
+<ul><li>make platform game to represent news timeline
+
+</li>
+<li>start from right, and older news appear as going to the left
+
+</li>
+
+</ul>
+</li>
+<li>make life game world
+<ul><li>tower defence game to represent life puzzle game
+
+</li>
+<li>explore tower defence game template
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li>islands
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span id="show1_1_5" class="foldclosed" onClick="show_folder('1_1_5')" style="POSITION: absolute">+</span> <span id="hide1_1_5" class="foldopened" onClick="hide_folder('1_1_5')">-</span>
+payMethod
+<ul id="fold1_1_5" style="POSITION: relative; VISIBILITY: visible;"><li>buyGame - buying should be fun too
+<ul><li>money
+<ul><li><span id="show1_1_5_1" class="foldclosed" onClick="show_folder('1_1_5_1')" style="POSITION: absolute">+</span> <span id="hide1_1_5_1" class="foldopened" onClick="hide_folder('1_1_5_1')">-</span>
+donation - because it feels good to just give
+<ul id="fold1_1_5_1" style="POSITION: relative; VISIBILITY: visible;"><li>PayPal
+
+</li>
+<li>flatter
+
+</li>
+<li>bitcoins - all kind of money accepted, just joking bitCoin is the future ;)
+
+</li>
+
+</ul>
+</li>
+<li>buy diferent kind of license
+<ul><li>buy the right to play the game, explaning the license like in creative commons
+
+</li>
+<li>buy the game - like if it were physical, the game is yours
+
+</li>
+<li>buy source code of the game
+
+</li>
+
+</ul>
+</li>
+<li>pay as you want ala humbleIndieBundle
+<ul><li>pay extra for bonuses ala kickstarter, before or after the game is released
+
+</li>
+<li>choose how your money is spend: graphics, programming, ui, promotion, CEOs, etc.
+
+</li>
+<li>with lower limit going up as the qunatity of items solds ala indieRoyalBundle
+
+</li>
+
+</ul>
+</li>
+<li>offer a minimal content game for free, then charge DLCs to earn money, i.e. Microsoft Flight
+
+</li>
+
+</ul>
+</li>
+<li>non-money
+<ul><li><p>private info - pay with your info like all access to all facebook account info
+<p>work for us - we pay you with games yay!!, you do small task like drawing, programming, cleanning, responde polls, emails, etc.
+</li>
+</ul>
+</li>
+
+</ul>
+</li>
+<li>payMMO
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span id="show1_2" class="foldclosed" onClick="show_folder('1_2')" style="POSITION: absolute">+</span> <span id="hide1_2" class="foldopened" onClick="hide_folder('1_2')">-</span>
+silent
+<ul id="fold1_2" style="POSITION: relative; VISIBILITY: visible;"><li>game based on a silent movie format, black and white and only music
+
+</li>
+
+</ul>
+</li>
+<li>illusionOfLife
+
+</li>
+<li>digitalTime
+
+</li>
+<li>chasqui
+
+</li>
+<li><span id="show1_3" class="foldclosed" onClick="show_folder('1_3')" style="POSITION: absolute">+</span> <span id="hide1_3" class="foldopened" onClick="hide_folder('1_3')">-</span>
+bobo
+<ul id="fold1_3" style="POSITION: relative; VISIBILITY: visible;"><li><span style="font-family: SansSerif, sans-serif; font-weight: bold; ">bobo the flying monkey and his bananacopters</span>
+
+</li>
+
+</ul>
+</li>
+<li>manga
+
+</li>
+<li>fractal
+
+</li>
+<li><span id="show1_4" class="foldclosed" onClick="show_folder('1_4')" style="POSITION: absolute">+</span> <span id="hide1_4" class="foldopened" onClick="hide_folder('1_4')">-</span>
+createMMO
+<ul id="fold1_4" style="POSITION: relative; VISIBILITY: visible;"><li><p>MMO like game to create any kind of game
+<ul><li>the user inscribe as programmer, artist, musisian, idea givers, bugs traker, user service
+<ul><li><p>user can also pay and become as a player identifiyed as that, its no needed to do anything
+<p>user can also be students, people than want to learn but learn not by repeating like then you do an assigment on school the teachear give a score and then throw it away, the user student will learn by doing things people will actually use
+<ul><li>challeng by learning something new
+
+</li>
+
+</ul></li>
+</ul>
+</li>
+<li>the result game could be free or pay
+
+</li>
+<li>the pay if any is divided apropietly between the creator users
+
+</li>
+<li>the interaction is "MMO like" quests, chat, avatar
+
+</li>
+
+</ul><p>create 3d models like in minecraft
+<p>upload assets and make the items, or representation of them like cubes
+<p>diferent forks of the game will represent diferent universes, maybe sharing something or nothing at all
+</li>
+</ul>
+</li>
+<li>memoryGame
+
+</li>
+<li><span id="show1_5" class="foldclosed" onClick="show_folder('1_5')" style="POSITION: absolute">+</span> <span id="hide1_5" class="foldopened" onClick="hide_folder('1_5')">-</span>
+I aint gonna life forever
+<ul id="fold1_5" style="POSITION: relative; VISIBILITY: visible;"><li>A video game that express "its my life" song and/or video
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_6" class="foldclosed" onClick="show_folder('1_6')" style="POSITION: absolute">+</span> <span id="hide1_6" class="foldopened" onClick="hide_folder('1_6')">-</span>
+memento
+<ul id="fold1_6" style="POSITION: relative; VISIBILITY: visible;"><li><p>game that explores memory, like false memories, a game with different stages that changes gameplay of a single history event according to its point of views of the memory
+</li>
+</ul>
+</li>
+<li><span id="show1_7" class="foldclosed" onClick="show_folder('1_7')" style="POSITION: absolute">+</span> <span id="hide1_7" class="foldopened" onClick="hide_folder('1_7')">-</span>
+mortal animal
+<ul id="fold1_7" style="POSITION: relative; VISIBILITY: visible;"><li><p>This the story of the mortal animal&#160;
+<p>This bieng found herself traped in ajail not knowing how she get there, as the days passes she realiaze that she is no the only one jaled there are many like her, she alos sees that many of them are executed anytime anywhere,some try to elude this destiny making their life in a interminable escape from dead others denie they are in jail, others try to enjoy as much as posible before they execution arrives, but what they have done to deserve execution, the answer remains unknown.
+</li>
+</ul>
+</li>
+<li><span id="show1_8" class="foldclosed" onClick="show_folder('1_8')" style="POSITION: absolute">+</span> <span id="hide1_8" class="foldopened" onClick="hide_folder('1_8')">-</span>
+your bravest cell
+<ul id="fold1_8" style="POSITION: relative; VISIBILITY: visible;"><li><p>game about your bravest cells, a sperm cell, the story of its life, an egg cell and the story of its life
+<p>at the end it says: "And for that moment it was your bravest cell, it sacrifice itself so you can life, honour it by being the best you can be" and instead of "the end" the game says "THANK YOU"
+</li>
+</ul>
+</li>
+<li><span id="show1_9" class="foldclosed" onClick="show_folder('1_9')" style="POSITION: absolute">+</span> <span id="hide1_9" class="foldopened" onClick="hide_folder('1_9')">-</span>
+animal
+<ul id="fold1_9" style="POSITION: relative; VISIBILITY: visible;"><li>Explore the idea that humans are animals, one speces of many, nothing special
+
+</li>
+<li><span id="show1_9_1" class="foldclosed" onClick="show_folder('1_9_1')" style="POSITION: absolute">+</span> <span id="hide1_9_1" class="foldopened" onClick="hide_folder('1_9_1')">-</span>
+ted video
+<ul id="fold1_9_1" style="POSITION: relative; VISIBILITY: visible;"><li>Suzana Herculano-Houzel_ What is so special about the human brain
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span id="show1_10" class="foldclosed" onClick="show_folder('1_10')" style="POSITION: absolute">+</span> <span id="hide1_10" class="foldopened" onClick="hide_folder('1_10')">-</span>
+bees
+<ul id="fold1_10" style="POSITION: relative; VISIBILITY: visible;"><li>based on the idea of bees society
+
+</li>
+<li>an interactive expirence to understand and learn from bees
+
+</li>
+<li><span id="show1_10_1" class="foldclosed" onClick="show_folder('1_10_1')" style="POSITION: absolute">+</span> <span id="hide1_10_1" class="foldopened" onClick="hide_folder('1_10_1')">-</span>
+ted video
+<ul id="fold1_10_1" style="POSITION: relative; VISIBILITY: visible;"><li>Marla Spivak_ Why bees are disappearing
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span id="show1_11" class="foldclosed" onClick="show_folder('1_11')" style="POSITION: absolute">+</span> <span id="hide1_11" class="foldopened" onClick="hide_folder('1_11')">-</span>
+caveman
+<ul id="fold1_11" style="POSITION: relative; VISIBILITY: visible;"><li>caveman are exposed to future tecnology, laser weapons, hover cars, etc..
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_12" class="foldclosed" onClick="show_folder('1_12')" style="POSITION: absolute">+</span> <span id="hide1_12" class="foldopened" onClick="hide_folder('1_12')">-</span>
+algorithm
+<ul id="fold1_12" style="POSITION: relative; VISIBILITY: visible;"><li>game to allow player to find the best algorytm for a problem
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_13" class="foldclosed" onClick="show_folder('1_13')" style="POSITION: absolute">+</span> <span id="hide1_13" class="foldopened" onClick="hide_folder('1_13')">-</span>
+free
+<ul id="fold1_13" style="POSITION: relative; VISIBILITY: visible;"><li><p>on movies you are hopelessly trap by the director direction, on games you are more free, but only when you develop a game you are truly free, so a game that allow it you to re create it, and should be played only by you will be a truly free experience
+</li>
+</ul>
+</li>
+<li><span id="show1_14" class="foldclosed" onClick="show_folder('1_14')" style="POSITION: absolute">+</span> <span id="hide1_14" class="foldopened" onClick="hide_folder('1_14')">-</span>
+flow fiat money
+<ul id="fold1_14" style="POSITION: relative; VISIBILITY: visible;"><li>app that show the flow of fiat money around the world
+
+</li>
+<li>how much money gets inside and outside a country
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_15" class="foldclosed" onClick="show_folder('1_15')" style="POSITION: absolute">+</span> <span id="hide1_15" class="foldopened" onClick="hide_folder('1_15')">-</span>
+impossible
+<ul id="fold1_15" style="POSITION: relative; VISIBILITY: visible;"><li><p>1. &#8220;There is no reason anyone would want a computer in their home.&#8221; &#8212;&nbsp;Ken Olson, president, chairman and founder of Digital Equipment Corp. (DEC), maker of big business mainframe computers, arguing against the PC in 1977.
+<p>2. &#8220;We will never make a 32 bit operating system.&#8221; &#8212;&nbsp;Bill Gates
+<p>3. &#8220;Lee DeForest has said in many newspapers and over his signature that it would be possible to transmit the human voice across the Atlantic before many years. Based on these absurd and deliberately misleading statements, the misguided public &#8230;&nbsp;has been persuaded to purchase stock in his company &#8230;&#8221;&nbsp;&#8212;&nbsp;a U.S. District Attorney, prosecuting American inventor Lee DeForest for selling stock fraudulently through the mail for his Radio Telephone Company in 1913.
+<p>4. &#8220;There is practically no chance communications space satellites will be used to provide better telephone, telegraph, television, or radio service inside the United States.&#8221; &#8212;&nbsp;T. Craven, FCC Commissioner, in 1961 (the first commercial communications satellite went into service in 1965).
+<p>5. &#8220;To place a man in a multi-stage rocket and project him into the controlling gravitational field of the moon where the passengers can make scientific observations, perhaps land alive, and then return to earth &#8211;&nbsp;all that constitutes a wild dream worthy of Jules Verne. I am bold enough to say that such a man-made voyage will never occur regardless of all future advances.&#8221; &#8212;&nbsp;Lee DeForest, American radio pioneer and inventor of the vacuum tube, in 1926
+<p>6. &#8220;A rocket will never be able to leave the Earth&#8217;s atmosphere.&#8221; &#8212;&nbsp;New York Times, 1936.
+<p>7. &#8220;Flight by machines heavier than air is unpractical (sic) and insignificant, if not utterly impossible.&#8221; &#8211;&nbsp;Simon Newcomb; The Wright Brothers flew at Kittyhawk 18 months later.
+<p>8. &#8220;Heavier-than-air flying machines are impossible.&#8221; &#8212;&nbsp;Lord Kelvin, British mathematician and physicist, president of the British Royal Society, 1895.
+<p>9. &#8220;There will never be a bigger plane built.&#8221; &#8212;&nbsp;A Boeing engineer, after the first flight of the 247, a twin engine plane that holds ten people
+<p>10. &#8220;Nuclear-powered vacuum cleaners will probably be a reality in 10 years.&#8221; -&#8211; Alex Lewyt, president of vacuum cleaner company Lewyt Corp., in the New York Times in 1955.
+<p>11. &#8220;This is the biggest fool thing we have ever done. The bomb will never go off, and I speak as an expert in explosives.&#8221; &#8212;&nbsp;Admiral William D. Leahy, Chief of Staff to the Commander in Chief of the Army and Navy during World War II, advising President Truman on the atomic bomb, 1945.[6] Leahy admitted the error five years later in his memoirs
+<p>12. &#8220;The energy produced by the breaking down of the atom is a very poor kind of thing. Anyone who expects a source of power from the transformation of these atoms is talking moonshine.&#8221; &#8212;&nbsp;Ernest Rutherford, shortly after splitting the atom for the first time.
+<p>13. &#8220;There is not the slightest indication that nuclear energy will ever be obtainable. It would mean that the atom would have to be shattered at will.&#8221; &#8212;&nbsp;Albert Einstein, 1932
+<p>14. &#8220;The cinema is little more than a fad. It&#8217;s canned drama. What audiences really want to see is flesh and blood on the stage.&#8221; -&#8211; Charlie Chaplin, actor, producer, director, and studio founder, 1916
+<p>15. &#8220;The horse is here to stay but the automobile is only a novelty &#8211;&nbsp;a fad.&#8221; &#8212;&nbsp;The president of the Michigan Savings Bank advising Henry Ford&#8217;s lawyer, Horace Rackham, not to invest in the Ford Motor Co., 1903
+<p>16. &#8220;The Americans have need of the telephone, but we do not. We have plenty of messenger boys.&#8221; &#8212;&nbsp;Sir William Preece, Chief Engineer, British Post Office, 1878.
+<p>17. &#8220;This &#8216;telephone&#8217; has too many shortcomings to be seriously considered as a means of communication. The device is inherently of no value to us.&#8221; &#8212;&nbsp;A memo at Western Union, 1878 (or 1876).
+<p>18. &#8220;The world potential market for copying machines is 5000 at most.&#8221; &#8212;&nbsp;IBM, to the eventual founders of Xerox, saying the photocopier had no market large enough to justify production, 1959.
+<p>19. &#8220;I must confess that my imagination refuses to see any sort of submarine doing anything but suffocating its crew and floundering at sea.&#8221; &#8212;&nbsp;HG Wells, British novelist, in 1901.
+<p>20. &#8220;X-rays will prove to be a hoax.&#8221; &#8212;&nbsp;Lord Kelvin, President of the Royal Society, 1883.
+<p>21. &#8220;The idea that cavalry will be replaced by these iron coaches is absurd. It is little short of treasonous.&#8221; &#8212;&nbsp;Comment of Aide-de-camp to Field Marshal Haig, at tank demonstration, 1916.
+<p>22. &#8220;How, sir, would you make a ship sail against the wind and currents by lighting a bonfire under her deck? I pray you, excuse me, I have not the time to listen to such nonsense.&#8221; &#8212;&nbsp;Napoleon Bonaparte, when told of Robert Fulton&#8217;s steamboat, 1800s.
+<p>23. &#8220;Fooling around with alternating current is just a waste of time. Nobody will use it, ever.&#8221; &#8212;&nbsp;Thomas Edison, American inventor, 1889 (Edison often ridiculed the arguments of competitor George Westinghouse for AC power).
+<p>24. &#8220;Home Taping Is Killing Music&#8221; &#8212;&nbsp;A 1980s campaign by the BPI, claiming that people recording music off the radio onto cassette would destroy the music industry.
+<p>25. &#8220;Television won&#8217;t last. It&#8217;s a flash in the pan.&#8221; &#8212;&nbsp;Mary Somerville, pioneer of radio educational broadcasts, 1948.
+<p>26. &#8220;[Television] won&#8217;t be able to hold on to any market it captures after the first six months. People will soon get tired of staring at a plywood box every night.&#8221; &#8212;&nbsp;Darryl Zanuck, movie producer, 20th Century Fox, 1946.
+<p>27. &#8220;When the Paris Exhibition [of 1878] closes, electric light will close with it and no more will be heard of it.&#8221; &#8211;&nbsp;Oxford professor Erasmus Wilson
+<p>28. &#8220;Dear Mr. President: The canal system of this country is being threatened by a new form of transportation known as &#8216;railroads&#8217; &#8230;&nbsp;As you may well know, Mr. President, &#8216;railroad&#8217; carriages are pulled at the enormous speed of 15 miles per hour by &#8216;engines&#8217; which, in addition to endangering life and limb of passengers, roar and snort their way through the countryside, setting fire to crops, scaring the livestock and frightening women and children. The Almighty certainly never intended that people should travel at such breakneck speed.&#8221; &#8212;&nbsp;Martin Van Buren, Governor of New York, 1830(?).
+<p>29. &#8220;Rail travel at high speed is not possible because passengers, unable to breathe, would die of asphyxia.&#8221; &#8212;&nbsp;Dr Dionysys Larder (1793-1859), professor of Natural Philosophy and Astronomy, University College London.
+<p>30. &#8220;The wireless music box has no imaginable commercial value. Who would pay for a message sent to no one in particular?&#8221; &#8212;&nbsp;Associates of David Sarnoff responding to the latter&#8217;s call for investment in the radio in 1921.
+</li>
+</ul>
+</li>
+<li><span id="show1_16" class="foldclosed" onClick="show_folder('1_16')" style="POSITION: absolute">+</span> <span id="hide1_16" class="foldopened" onClick="hide_folder('1_16')">-</span>
+labyrinthos
+<ul id="fold1_16" style="POSITION: relative; VISIBILITY: visible;"><li>ever changing labyrinth
+
+</li>
+<li>procedural generated
+
+</li>
+<li><span id="show1_16_1" class="foldclosed" onClick="show_folder('1_16_1')" style="POSITION: absolute">+</span> <span id="hide1_16_1" class="foldopened" onClick="hide_folder('1_16_1')">-</span>
+random destructive/catastrofic events
+<ul id="fold1_16_1" style="POSITION: relative; VISIBILITY: visible;"><li>as events happens the deeper the character goes
+
+</li>
+
+</ul>
+</li>
+<li>evokes sense of lost and desesperation
+
+</li>
+<li>2D
+
+</li>
+
+</ul>
+</li>
+<li>virtual grid
+
+</li>
+<li><span id="show1_17" class="foldclosed" onClick="show_folder('1_17')" style="POSITION: absolute">+</span> <span id="hide1_17" class="foldopened" onClick="hide_folder('1_17')">-</span>
+interactive theather
+<ul id="fold1_17" style="POSITION: relative; VISIBILITY: visible;"><li>multiplayer game where players are actors
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_18" class="foldclosed" onClick="show_folder('1_18')" style="POSITION: absolute">+</span> <span id="hide1_18" class="foldopened" onClick="hide_folder('1_18')">-</span>
+npc
+<ul id="fold1_18" style="POSITION: relative; VISIBILITY: visible;"><li>let random players to be NPCs or pedestrians on a single player game of other person
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_19" class="foldclosed" onClick="show_folder('1_19')" style="POSITION: absolute">+</span> <span id="hide1_19" class="foldopened" onClick="hide_folder('1_19')">-</span>
+arcades
+<ul id="fold1_19" style="POSITION: relative; VISIBILITY: visible;"><li><p>Recreate the feeling of arcades, a multiplayer game that needs a very small fee to play, also the winner could gets the loser money
+</li>
+</ul>
+</li>
+<li><span id="show1_20" class="foldclosed" onClick="show_folder('1_20')" style="POSITION: absolute">+</span> <span id="hide1_20" class="foldopened" onClick="hide_folder('1_20')">-</span>
+die
+<ul id="fold1_20" style="POSITION: relative; VISIBILITY: visible;"><li><p>a game that tries to kill the player literally, making him commit sucide in real life, the player wins if manage to survive the pychlogical attacks of the game
+</li>
+</ul>
+</li>
+<li><span id="show1_21" class="foldclosed" onClick="show_folder('1_21')" style="POSITION: absolute">+</span> <span id="hide1_21" class="foldopened" onClick="hide_folder('1_21')">-</span>
+rl
+<ul id="fold1_21" style="POSITION: relative; VISIBILITY: visible;"><li><p>game about rules of the real world, no objetives, the same strategies no always works, you can die anytime, you have few control, etc.
+</li>
+</ul>
+</li>
+<li><span id="show1_22" class="foldclosed" onClick="show_folder('1_22')" style="POSITION: absolute">+</span> <span id="hide1_22" class="foldopened" onClick="hide_folder('1_22')">-</span>
+dreamer
+<ul id="fold1_22" style="POSITION: relative; VISIBILITY: visible;"><li><p>A system that combines: ideas production, new form of education, important world problem solutions and ecology
+<p><span id="show1_22_1" class="foldclosed" onClick="show_folder('1_22_1')" style="POSITION: absolute">+</span> <span id="hide1_22_1" class="foldopened" onClick="hide_folder('1_22_1')">-</span>
+ted videos
+<ul id="fold1_22_1" style="POSITION: relative; VISIBILITY: visible;"><li>Google I_O 2014 - Making sense of online course data
+
+</li>
+
+</ul></li>
+</ul>
+</li>
+<li><span id="show1_23" class="foldclosed" onClick="show_folder('1_23')" style="POSITION: absolute">+</span> <span id="hide1_23" class="foldopened" onClick="hide_folder('1_23')">-</span>
+paperPlane
+<ul id="fold1_23" style="POSITION: relative; VISIBILITY: visible;"><li><p>create paper planes like with origami, test your planes on varios obstacle courses, or just fly on beatiful scenarios
+<p>revive childhood memories
+<p>allow users to share courses or scenarios with the in-game editor
+<p>its possible to create a campaing to tell an story
+<p>the game will include my campaings, my stories, developer campaings
+<p><span id="show1_23_1" class="foldclosed" onClick="show_folder('1_23_1')" style="POSITION: absolute">+</span> <span id="hide1_23_1" class="foldopened" onClick="hide_folder('1_23_1')">-</span>
+video
+<ul id="fold1_23_1" style="POSITION: relative; VISIBILITY: visible;"><li>ENJMIN - PaperPlane - Trailer
+
+</li>
+
+</ul></li>
+</ul>
+</li>
+<li><span id="show1_24" class="foldclosed" onClick="show_folder('1_24')" style="POSITION: absolute">+</span> <span id="hide1_24" class="foldopened" onClick="hide_folder('1_24')">-</span>
+superMarioMMO
+<ul id="fold1_24" style="POSITION: relative; VISIBILITY: visible;"><li>super mario MMO
+
+</li>
+<li>concurrent players with nintendo characters and classes
+
+</li>
+<li>play on nes super mario 2d worlds with MMO mechanics
+
+</li>
+<li><span id="show1_24_1" class="foldclosed" onClick="show_folder('1_24_1')" style="POSITION: absolute">+</span> <span id="hide1_24_1" class="foldopened" onClick="hide_folder('1_24_1')">-</span>
+video
+<ul id="fold1_24_1" style="POSITION: relative; VISIBILITY: visible;"><li>Super Mario Bros Time Trial ( gamescon 2013 )
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span id="show1_25" class="foldclosed" onClick="show_folder('1_25')" style="POSITION: absolute">+</span> <span id="hide1_25" class="foldopened" onClick="hide_folder('1_25')">-</span>
+disability
+<ul id="fold1_25" style="POSITION: relative; VISIBILITY: visible;"><li><p>game about disability, helps understand that everybody is disabled, a person needs help to fly, to go 60 mhp, they needs plains, cars, technology, clothes
+<p>any help you need, shows your disability
+<p><span id="show1_25_1" class="foldclosed" onClick="show_folder('1_25_1')" style="POSITION: absolute">+</span> <span id="hide1_25_1" class="foldopened" onClick="hide_folder('1_25_1')">-</span>
+ted video
+<ul id="fold1_25_1" style="POSITION: relative; VISIBILITY: visible;"><li>Henry Evans and Chad Jenkins_ Meet the robots for humanity
+
+</li>
+<li>Stella Young_ I'm not your inspiration, thank you very much
+
+</li>
+
+</ul></li>
+</ul>
+</li>
+<li><span id="show1_26" class="foldclosed" onClick="show_folder('1_26')" style="POSITION: absolute">+</span> <span id="hide1_26" class="foldopened" onClick="hide_folder('1_26')">-</span>
+opticalIlussion
+<ul id="fold1_26" style="POSITION: relative; VISIBILITY: visible;"><li>Optical illusion game
+
+</li>
+<li><span id="show1_26_1" class="foldclosed" onClick="show_folder('1_26_1')" style="POSITION: absolute">+</span> <span id="hide1_26_1" class="foldopened" onClick="hide_folder('1_26_1')">-</span>
+video
+<ul id="fold1_26_1" style="POSITION: relative; VISIBILITY: visible;"><li>Tech Demo for Pillow Castle's First Person Puzzler
+
+</li>
+<li>Vsauce - This is only red
+
+</li>
+
+</ul>
+</li>
+<li><a href="http://www.psy.ritsumei.ac.jp/~akitaoka/classify.html" target="_blank"><span class=l>~</span>&nbsp;psy.ritsumei.ac.jp &gt; Akitaoka &gt; Classify
+</a>
+
+</li>
+
+</ul>
+</li>
+<li>humans incapable of evil
+
+</li>
+<li>slow-mo dead island trailer
+
+</li>
+<li>stupid like hachiko or going elsewhere on journey
+
+</li>
+<li><span id="show1_27" class="foldclosed" onClick="show_folder('1_27')" style="POSITION: absolute">+</span> <span id="hide1_27" class="foldopened" onClick="hide_folder('1_27')">-</span>
+spoiler alert
+<ul id="fold1_27" style="POSITION: relative; VISIBILITY: visible;"><li><p>a game for game designers and story makers, shows the fact since they create the story, everything is spoiled from the begining
+</li>
+</ul>
+</li>
+<li><span id="show1_28" class="foldclosed" onClick="show_folder('1_28')" style="POSITION: absolute">+</span> <span id="hide1_28" class="foldopened" onClick="hide_folder('1_28')">-</span>
+mirror
+<ul id="fold1_28" style="POSITION: relative; VISIBILITY: visible;"><li><p>a piece of paper that with a pencil hand drawing shows as if your immediate future self were looking though a mirror
+<p>it is paradoxical because as you look to the paper seeing the future, the future is changed and yet it is not
+</li>
+</ul>
+</li>
+<li><span id="show1_29" class="foldclosed" onClick="show_folder('1_29')" style="POSITION: absolute">+</span> <span id="hide1_29" class="foldopened" onClick="hide_folder('1_29')">-</span>
+switch
+<ul id="fold1_29" style="POSITION: relative; VISIBILITY: visible;"><li>game that switches player and computer roles
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_30" class="foldclosed" onClick="show_folder('1_30')" style="POSITION: absolute">+</span> <span id="hide1_30" class="foldopened" onClick="hide_folder('1_30')">-</span>
+the strange worlds of Mario
+<ul id="fold1_30" style="POSITION: relative; VISIBILITY: visible;"><li>with 200 or older restriction
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_31" class="foldclosed" onClick="show_folder('1_31')" style="POSITION: absolute">+</span> <span id="hide1_31" class="foldopened" onClick="hide_folder('1_31')">-</span>
+copyright ground
+<ul id="fold1_31" style="POSITION: relative; VISIBILITY: visible;"><li>a game that inflicts as many copyrights as possible, only available where copyright is not enforced
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_32" class="foldclosed" onClick="show_folder('1_32')" style="POSITION: absolute">+</span> <span id="hide1_32" class="foldopened" onClick="hide_folder('1_32')">-</span>
+*-based game
+<ul id="fold1_32" style="POSITION: relative; VISIBILITY: visible;"><li>music-based game
+
+</li>
+<li>poem-based game
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_33" class="foldclosed" onClick="show_folder('1_33')" style="POSITION: absolute">+</span> <span id="hide1_33" class="foldopened" onClick="hide_folder('1_33')">-</span>
+life or death
+<ul id="fold1_33" style="POSITION: relative; VISIBILITY: visible;"><li><p>about a doctor critical operation moment, like a minigame, of life or death, the result must be informed to the family
+<p>a succesion of cirguries non skipables cant &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;be repeated only one chance
+</li>
+</ul>
+</li>
+<li><span id="show1_34" class="foldclosed" onClick="show_folder('1_34')" style="POSITION: absolute">+</span> <span id="hide1_34" class="foldopened" onClick="hide_folder('1_34')">-</span>
+in that moment
+<ul id="fold1_34" style="POSITION: relative; VISIBILITY: visible;"><li><p>user creates a family profile real or not, then another user calls and tells them a suggested script like a family memeber has die, is sick, or just to say hello and i love you as a mother or as a daughter
+</li>
+</ul>
+</li>
+<li><span id="show1_35" class="foldclosed" onClick="show_folder('1_35')" style="POSITION: absolute">+</span> <span id="hide1_35" class="foldopened" onClick="hide_folder('1_35')">-</span>
+game about
+<ul id="fold1_35" style="POSITION: relative; VISIBILITY: visible;"><li><a href="http://en.wikipedia.org/wiki/Dimethylmercury" target="_blank"><span class=l>~</span>&nbsp;en.wikipedia.org &gt; Wiki &gt; Dimethylmercury
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_36" class="foldclosed" onClick="show_folder('1_36')" style="POSITION: absolute">+</span> <span id="hide1_36" class="foldopened" onClick="hide_folder('1_36')">-</span>
+game about maleficent based on the original disney movie
+<ul id="fold1_36" style="POSITION: relative; VISIBILITY: visible;"><li>maleficent is actually the good one
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_37" class="foldclosed" onClick="show_folder('1_37')" style="POSITION: absolute">+</span> <span id="hide1_37" class="foldopened" onClick="hide_folder('1_37')">-</span>
+closeYourEyes
+<ul id="fold1_37" style="POSITION: relative; VISIBILITY: visible;"><li>game to understand being blind, complete black screen only sound and vibration
+
+</li>
+<li>unity game
+
+</li>
+<li>with no graphics at all
+
+</li>
+<li>complete black app/icon/description&#9632;&#9632;&#9632;&#9632;&#9632;
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_38" class="foldclosed" onClick="show_folder('1_38')" style="POSITION: absolute">+</span> <span id="hide1_38" class="foldopened" onClick="hide_folder('1_38')">-</span>
+till death swallows all
+<ul id="fold1_38" style="POSITION: relative; VISIBILITY: visible;"><li>app that helps understand that eventually everything will die
+
+</li>
+<li>app that helps understand that our time alife is limited
+
+</li>
+<li>app that helps use time better
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_39" class="foldclosed" onClick="show_folder('1_39')" style="POSITION: absolute">+</span> <span id="hide1_39" class="foldopened" onClick="hide_folder('1_39')">-</span>
+a game that analice current society from a objective perspective
+<ul id="fold1_39" style="POSITION: relative; VISIBILITY: visible;"><li>shows objectibly how society, economy, countries, war, health currently work
+
+</li>
+<li>shows objectibly how life itself is
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_40" class="foldclosed" onClick="show_folder('1_40')" style="POSITION: absolute">+</span> <span id="hide1_40" class="foldopened" onClick="hide_folder('1_40')">-</span>
+game about DNA
+<ul id="fold1_40" style="POSITION: relative; VISIBILITY: visible;"><li>to show that all life are alike
+
+</li>
+<li>that DNA is ancient, its inner workings havent change since billon of years
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_41" class="foldclosed" onClick="show_folder('1_41')" style="POSITION: absolute">+</span> <span id="hide1_41" class="foldopened" onClick="hide_folder('1_41')">-</span>
+virtual movie maker, add actor, program its personalities, see their recation
+<ul id="fold1_41" style="POSITION: relative; VISIBILITY: visible;"><li>like sims but for 3D movies
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_42" class="foldclosed" onClick="show_folder('1_42')" style="POSITION: absolute">+</span> <span id="hide1_42" class="foldopened" onClick="hide_folder('1_42')">-</span>
+&#31169;&#12384;&#12428;
+<ul id="fold1_42" style="POSITION: relative; VISIBILITY: visible;"><li>modifyWhiteRoom
+<ul><li>add spongBob Painting
+
+</li>
+
+</ul>
+</li>
+<li>proofOfConcept
+
+</li>
+<li>autonomousWanderingDroid
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_43" class="foldclosed" onClick="show_folder('1_43')" style="POSITION: absolute">+</span> <span id="hide1_43" class="foldopened" onClick="hide_folder('1_43')">-</span>
+video
+<ul id="fold1_43" style="POSITION: relative; VISIBILITY: visible;"><li><span id="show1_43_1" class="foldclosed" onClick="show_folder('1_43_1')" style="POSITION: absolute">+</span> <span id="hide1_43_1" class="foldopened" onClick="hide_folder('1_43_1')">-</span>
+Greg Wilson - What We Actually Know About Software Development, and Why We Believe It's True
+<ul id="fold1_43_1" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://vimeo.com/9270320" target="_blank"><span class=l>~</span>&nbsp;https://vimeo.com/9270320
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_43_2" class="foldclosed" onClick="show_folder('1_43_2')" style="POSITION: absolute">+</span> <span id="hide1_43_2" class="foldopened" onClick="hide_folder('1_43_2')">-</span>
+Bret Victor - Inventing on Principle
+<ul id="fold1_43_2" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://vimeo.com/36579366" target="_blank"><span class=l>~</span>&nbsp;https://vimeo.com/36579366
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_43_3" class="foldclosed" onClick="show_folder('1_43_3')" style="POSITION: absolute">+</span> <span id="hide1_43_3" class="foldopened" onClick="hide_folder('1_43_3')">-</span>
+The Quantum Conspiracy: What Popularizers of QM Don't Want You to Know
+<ul id="fold1_43_3" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://www.youtube.com/watch?v=dEaecUuEqfc" target="_blank"><span class=l>~</span>&nbsp;https://www.youtube.com/watch?v=dEaecUuEqfc
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_43_4" class="foldclosed" onClick="show_folder('1_43_4')" style="POSITION: absolute">+</span> <span id="hide1_43_4" class="foldopened" onClick="hide_folder('1_43_4')">-</span>
+Leonard Susskind on The World As Hologram
+<ul id="fold1_43_4" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://www.youtube.com/watch?v=2DIl3Hfh9tY" target="_blank"><span class=l>~</span>&nbsp;https://www.youtube.com/watch?v=2DIl3Hfh9tY
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_43_5" class="foldclosed" onClick="show_folder('1_43_5')" style="POSITION: absolute">+</span> <span id="hide1_43_5" class="foldopened" onClick="hide_folder('1_43_5')">-</span>
+Toorcamp 2012 - Cognitive Psychology for Hackers
+<ul id="fold1_43_5" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://www.youtube.com/watch?v=N_AzEzxJW5E" target="_blank"><span class=l>~</span>&nbsp;https://www.youtube.com/watch?v=N_AzEzxJW5E
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_43_6" class="foldclosed" onClick="show_folder('1_43_6')" style="POSITION: absolute">+</span> <span id="hide1_43_6" class="foldopened" onClick="hide_folder('1_43_6')">-</span>
+Zed A. Shaw - The Web Will Die When OOP Dies
+<ul id="fold1_43_6" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://vimeo.com/43380467" target="_blank"><span class=l>~</span>&nbsp;https://vimeo.com/43380467
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_43_7" class="foldclosed" onClick="show_folder('1_43_7')" style="POSITION: absolute">+</span> <span id="hide1_43_7" class="foldopened" onClick="hide_folder('1_43_7')">-</span>
+Father And Daughter - 2000 Academy Award for Animated Short Film
+<ul id="fold1_43_7" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://vimeo.com/89589981" target="_blank"><span class=l>~</span>&nbsp;https://vimeo.com/89589981
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_43_8" class="foldclosed" onClick="show_folder('1_43_8')" style="POSITION: absolute">+</span> <span id="hide1_43_8" class="foldopened" onClick="hide_folder('1_43_8')">-</span>
+Cosmic Journey - When Will Time End
+<ul id="fold1_43_8" style="POSITION: relative; VISIBILITY: visible;"><li><a href="http://www.dailymotion.com/video/xw63bh_cosmic-journey-when-will-time-end_tech" target="_blank"><span class=l>~</span>&nbsp;dailymotion.com &gt; Video &gt; Xw63bh cosmic-journey-when-will-time-end tech
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_43_9" class="foldclosed" onClick="show_folder('1_43_9')" style="POSITION: absolute">+</span> <span id="hide1_43_9" class="foldopened" onClick="hide_folder('1_43_9')">-</span>
+Wappy Dog: Gameplay
+<ul id="fold1_43_9" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://www.youtube.com/watch?v=y-umRxvCCWg" target="_blank"><span class=l>~</span>&nbsp;https://www.youtube.com/watch?v=y-umRxvCCWg
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_43_10" class="foldclosed" onClick="show_folder('1_43_10')" style="POSITION: absolute">+</span> <span id="hide1_43_10" class="foldopened" onClick="hide_folder('1_43_10')">-</span>
+David Christian_ The history of our world in 18 minutes
+<ul id="fold1_43_10" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://www.ted.com/talks/david_christian_big_history" target="_blank"><span class=l>~</span>&nbsp;https://www.ted.com/talks/david_christian_big_history
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_43_11" class="foldclosed" onClick="show_folder('1_43_11')" style="POSITION: absolute">+</span> <span id="hide1_43_11" class="foldopened" onClick="hide_folder('1_43_11')">-</span>
+Sarah Kay If I should have a daughter ...
+<ul id="fold1_43_11" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://www.ted.com/talks/sarah_kay_if_i_should_have_a_daughter" target="_blank"><span class=l>~</span>&nbsp;https://www.ted.com/talks/sarah_kay_if_i_should_have_a_daughter
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_43_12" class="foldclosed" onClick="show_folder('1_43_12')" style="POSITION: absolute">+</span> <span id="hide1_43_12" class="foldopened" onClick="hide_folder('1_43_12')">-</span>
+Andrew Solomon_ Depression, the secret we share
+<ul id="fold1_43_12" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://www.ted.com/talks/andrew_solomon_depression_the_secret_we_share" target="_blank"><span class=l>~</span>&nbsp;https://www.ted.com/talks/andrew_solomon_depression_the_secret_we_share
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_43_13" class="foldclosed" onClick="show_folder('1_43_13')" style="POSITION: absolute">+</span> <span id="hide1_43_13" class="foldopened" onClick="hide_folder('1_43_13')">-</span>
+Rory Sutherland- Perspective is everything
+<ul id="fold1_43_13" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://www.ted.com/talks/rory_sutherland_perspective_is_everything" target="_blank"><span class=l>~</span>&nbsp;https://www.ted.com/talks/rory_sutherland_perspective_is_everything
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_43_14" class="foldclosed" onClick="show_folder('1_43_14')" style="POSITION: absolute">+</span> <span id="hide1_43_14" class="foldopened" onClick="hide_folder('1_43_14')">-</span>
+Conrad Wolfram: Teaching kids real math with computers
+<ul id="fold1_43_14" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://www.ted.com/talks/conrad_wolfram_teaching_kids_real_math_with_computers" target="_blank"><span class=l>~</span>&nbsp;https://www.ted.com/talks/conrad_wolfram_teaching_kids_real_math_with_computers
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_43_15" class="foldclosed" onClick="show_folder('1_43_15')" style="POSITION: absolute">+</span> <span id="hide1_43_15" class="foldopened" onClick="hide_folder('1_43_15')">-</span>
+Elizabeth Loftus_ The fiction of memory
+<ul id="fold1_43_15" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://www.ted.com/talks/elizabeth_loftus_the_fiction_of_memory" target="_blank"><span class=l>~</span>&nbsp;https://www.ted.com/talks/elizabeth_loftus_the_fiction_of_memory
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_43_16" class="foldclosed" onClick="show_folder('1_43_16')" style="POSITION: absolute">+</span> <span id="hide1_43_16" class="foldopened" onClick="hide_folder('1_43_16')">-</span>
+9/11 As It Happened: First Reports and Second Crash from Multiple Media
+<ul id="fold1_43_16" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://www.youtube.com/watch?v=aHcQ89pxjd4" target="_blank"><span class=l>~</span>&nbsp;https://www.youtube.com/watch?v=aHcQ89pxjd4
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_43_17" class="foldclosed" onClick="show_folder('1_43_17')" style="POSITION: absolute">+</span> <span id="hide1_43_17" class="foldopened" onClick="hide_folder('1_43_17')">-</span>
+[noS Principle Understanding]TEDxPSU - Sam Richards - A Radical Experiment in Empathy
+<ul id="fold1_43_17" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://www.ted.com/talks/sam_richards_a_radical_experiment_in_empathy" target="_blank"><span class=l>~</span>&nbsp;https://www.ted.com/talks/sam_richards_a_radical_experiment_in_empathy
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_43_18" class="foldclosed" onClick="show_folder('1_43_18')" style="POSITION: absolute">+</span> <span id="hide1_43_18" class="foldopened" onClick="hide_folder('1_43_18')">-</span>
+RSA Animate - The Power of Networks
+<ul id="fold1_43_18" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://www.youtube.com/watch?v=nJmGrNdJ5Gw" target="_blank"><span class=l>~</span>&nbsp;https://www.youtube.com/watch?v=nJmGrNdJ5Gw
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_43_19" class="foldclosed" onClick="show_folder('1_43_19')" style="POSITION: absolute">+</span> <span id="hide1_43_19" class="foldopened" onClick="hide_folder('1_43_19')">-</span>
+Diana Nyad_ Never, ever give up
+<ul id="fold1_43_19" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://www.ted.com/talks/diana_nyad_never_ever_give_up" target="_blank"><span class=l>~</span>&nbsp;https://www.ted.com/talks/diana_nyad_never_ever_give_up
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_43_20" class="foldclosed" onClick="show_folder('1_43_20')" style="POSITION: absolute">+</span> <span id="hide1_43_20" class="foldopened" onClick="hide_folder('1_43_20')">-</span>
+(education)Stuart Firestein_ The pursuit of ignorance
+<ul id="fold1_43_20" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://www.ted.com/talks/stuart_firestein_the_pursuit_of_ignorance" target="_blank"><span class=l>~</span>&nbsp;https://www.ted.com/talks/stuart_firestein_the_pursuit_of_ignorance
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_43_21" class="foldclosed" onClick="show_folder('1_43_21')" style="POSITION: absolute">+</span> <span id="hide1_43_21" class="foldopened" onClick="hide_folder('1_43_21')">-</span>
+Gian Giudice_ Why our universe might exist on a knife-edge
+<ul id="fold1_43_21" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://www.ted.com/talks/gian_giudice_why_our_universe_might_exist_on_a_knife_edge" target="_blank"><span class=l>~</span>&nbsp;https://www.ted.com/talks/gian_giudice_why_our_universe_might_exist_on_a_knife_edge
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_43_22" class="foldclosed" onClick="show_folder('1_43_22')" style="POSITION: absolute">+</span> <span id="hide1_43_22" class="foldopened" onClick="hide_folder('1_43_22')">-</span>
+The Most Astounding Fact - Neil deGrasse Tyson
+<ul id="fold1_43_22" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://www.youtube.com/watch?v=9D05ej8u-gU" target="_blank"><span class=l>~</span>&nbsp;https://www.youtube.com/watch?v=9D05ej8u-gU
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_43_23" class="foldclosed" onClick="show_folder('1_43_23')" style="POSITION: absolute">+</span> <span id="hide1_43_23" class="foldopened" onClick="hide_folder('1_43_23')">-</span>
+(Research bias)Ben Goldacre: What doctors don't know about the drugs they prescribe
+<ul id="fold1_43_23" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://www.ted.com/talks/ben_goldacre_what_doctors_don_t_know_about_the_drugs_they_prescribe" target="_blank"><span class=l>~</span>&nbsp;https://www.ted.com/talks/ben_goldacre_what_doctors_don_t_know_about_the_drugs_they_prescribe
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_43_24" class="foldclosed" onClick="show_folder('1_43_24')" style="POSITION: absolute">+</span> <span id="hide1_43_24" class="foldopened" onClick="hide_folder('1_43_24')">-</span>
+LE NOEUD CRAVATE
+<ul id="fold1_43_24" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://www.youtube.com/watch?v=2u_oVyS7s8U" target="_blank"><span class=l>~</span>&nbsp;https://www.youtube.com/watch?v=2u_oVyS7s8U
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_43_25" class="foldclosed" onClick="show_folder('1_43_25')" style="POSITION: absolute">+</span> <span id="hide1_43_25" class="foldopened" onClick="hide_folder('1_43_25')">-</span>
+Address Is Approximate - A Google Street View - Robot inspired stop motion short
+<ul id="fold1_43_25" style="POSITION: relative; VISIBILITY: visible;"><li><a href="http://sharpandjenkins.com/address-is-approximate" target="_blank"><span class=l>~</span>&nbsp;sharpandjenkins.com &gt; Address-is-approximate
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_43_26" class="foldclosed" onClick="show_folder('1_43_26')" style="POSITION: absolute">+</span> <span id="hide1_43_26" class="foldopened" onClick="hide_folder('1_43_26')">-</span>
+Strangers, again
+<ul id="fold1_43_26" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://www.youtube.com/watch?v=tSdELZxEnHY" target="_blank"><span class=l>~</span>&nbsp;https://www.youtube.com/watch?v=tSdELZxEnHY
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_43_27" class="foldclosed" onClick="show_folder('1_43_27')" style="POSITION: absolute">+</span> <span id="hide1_43_27" class="foldopened" onClick="hide_folder('1_43_27')">-</span>
+Jason Pontin_ Can technology solve our big problems
+<ul id="fold1_43_27" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://www.ted.com/talks/jason_pontin_can_technology_solve_our_big_problems" target="_blank"><span class=l>~</span>&nbsp;https://www.ted.com/talks/jason_pontin_can_technology_solve_our_big_problems
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_43_28" class="foldclosed" onClick="show_folder('1_43_28')" style="POSITION: absolute">+</span> <span id="hide1_43_28" class="foldopened" onClick="hide_folder('1_43_28')">-</span>
+Alex Wissner-Gross_ A new equation for intelligence
+<ul id="fold1_43_28" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://www.ted.com/talks/alex_wissner_gross_a_new_equation_for_intelligence" target="_blank"><span class=l>~</span>&nbsp;https://www.ted.com/talks/alex_wissner_gross_a_new_equation_for_intelligence
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_43_29" class="foldclosed" onClick="show_folder('1_43_29')" style="POSITION: absolute">+</span> <span id="hide1_43_29" class="foldopened" onClick="hide_folder('1_43_29')">-</span>
+Information R/evolution
+<ul id="fold1_43_29" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://www.youtube.com/watch?v=-4CV05HyAbM" target="_blank"><span class=l>~</span>&nbsp;https://www.youtube.com/watch?v=-4CV05HyAbM
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_43_30" class="foldclosed" onClick="show_folder('1_43_30')" style="POSITION: absolute">+</span> <span id="hide1_43_30" class="foldopened" onClick="hide_folder('1_43_30')">-</span>
+This Video Will Hurt
+<ul id="fold1_43_30" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://www.youtube.com/watch?v=O2hO4_UEe-4" target="_blank"><span class=l>~</span>&nbsp;https://www.youtube.com/watch?v=O2hO4_UEe-4
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_43_31" class="foldclosed" onClick="show_folder('1_43_31')" style="POSITION: absolute">+</span> <span id="hide1_43_31" class="foldopened" onClick="hide_folder('1_43_31')">-</span>
+Aparna Rao_ Art that craves your attention
+<ul id="fold1_43_31" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://www.ted.com/talks/aparna_rao_art_that_craves_your_attention" target="_blank"><span class=l>~</span>&nbsp;https://www.ted.com/talks/aparna_rao_art_that_craves_your_attention
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_43_32" class="foldclosed" onClick="show_folder('1_43_32')" style="POSITION: absolute">+</span> <span id="hide1_43_32" class="foldopened" onClick="hide_folder('1_43_32')">-</span>
+( WhatLeadsToSuccess )Richard St. John: 8 secrets of success
+<ul id="fold1_43_32" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://www.ted.com/talks/richard_st_john_s_8_secrets_of_success" target="_blank"><span class=l>~</span>&nbsp;https://www.ted.com/talks/richard_st_john_s_8_secrets_of_success
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_43_33" class="foldclosed" onClick="show_folder('1_43_33')" style="POSITION: absolute">+</span> <span id="hide1_43_33" class="foldopened" onClick="hide_folder('1_43_33')">-</span>
+Crazy Watering Can
+<ul id="fold1_43_33" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://vimeo.com/25149893" target="_blank"><span class=l>~</span>&nbsp;https://vimeo.com/25149893
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_43_34" class="foldclosed" onClick="show_folder('1_43_34')" style="POSITION: absolute">+</span> <span id="hide1_43_34" class="foldopened" onClick="hide_folder('1_43_34')">-</span>
+Steven Johnson: Where good ideas come from
+<ul id="fold1_43_34" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://www.ted.com/talks/steven_johnson_where_good_ideas_come_from" target="_blank"><span class=l>~</span>&nbsp;https://www.ted.com/talks/steven_johnson_where_good_ideas_come_from
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_43_35" class="foldclosed" onClick="show_folder('1_43_35')" style="POSITION: absolute">+</span> <span id="hide1_43_35" class="foldopened" onClick="hide_folder('1_43_35')">-</span>
+Grace Hopper - Nanoseconds
+<ul id="fold1_43_35" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://www.youtube.com/watch?v=JEpsKnWZrJ8" target="_blank"><span class=l>~</span>&nbsp;https://www.youtube.com/watch?v=JEpsKnWZrJ8
+</a>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_43_36" class="foldclosed" onClick="show_folder('1_43_36')" style="POSITION: absolute">+</span> <span id="hide1_43_36" class="foldopened" onClick="hide_folder('1_43_36')">-</span>
+If It Takes a Lifetime - Brawl in the Family
+<ul id="fold1_43_36" style="POSITION: relative; VISIBILITY: visible;"><li><a href="https://www.youtube.com/watch?v=tpeXTgwh7F4" target="_blank"><span class=l>~</span>&nbsp;https://www.youtube.com/watch?v=tpeXTgwh7F4
+</a>
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li>game inpired by "wheel of time" book series
+
+</li>
+<li><span id="show1_44" class="foldclosed" onClick="show_folder('1_44')" style="POSITION: absolute">+</span> <span id="hide1_44" class="foldopened" onClick="hide_folder('1_44')">-</span>
+lost ideas where only name remained
+<ul id="fold1_44" style="POSITION: relative; VISIBILITY: visible;"><li>digitalTime
+
+</li>
+<li>compass
+
+</li>
+<li>fractal
+
+</li>
+<li>manga
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_45" class="foldclosed" onClick="show_folder('1_45')" style="POSITION: absolute">+</span> <span id="hide1_45" class="foldopened" onClick="hide_folder('1_45')">-</span>
+trashMan
+<ul id="fold1_45" style="POSITION: relative; VISIBILITY: visible;"><li>the life of a trashman, reflexions on capitalism
+
+</li>
+<li><span id="show1_45_1" class="foldclosed" onClick="show_folder('1_45_1')" style="POSITION: absolute">+</span> <span id="hide1_45_1" class="foldopened" onClick="hide_folder('1_45_1')">-</span>
+ted video
+<ul id="fold1_45_1" style="POSITION: relative; VISIBILITY: visible;"><li>Robin Nagle_ What I discovered in New York City trash
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span id="show1_46" class="foldclosed" onClick="show_folder('1_46')" style="POSITION: absolute">+</span> <span id="hide1_46" class="foldopened" onClick="hide_folder('1_46')">-</span>
+musicVideogame
+<ul id="fold1_46" style="POSITION: relative; VISIBILITY: visible;"><li>Demi Lovato - Skyscraper
+
+</li>
+<li>Elfen Lied - Lilium
+
+</li>
+<li>Evanescence - My Immortal
+
+</li>
+<li>(Homenaje a Laika) Oreja de Van Gogh - Europa VII
+
+</li>
+<li>La Oreja de Van Gogh - Dulce Locura
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_47" class="foldclosed" onClick="show_folder('1_47')" style="POSITION: absolute">+</span> <span id="hide1_47" class="foldopened" onClick="hide_folder('1_47')">-</span>
+mementoMori
+<ul id="fold1_47" style="POSITION: relative; VISIBILITY: visible;"><li>Flight from Death - The Quest for Immortality
+
+</li>
+<li>La Maison en Petits Cubes
+
+</li>
+<li>Michio Kaku Explains String Theory
+
+</li>
+<li>Saint Seiya Hades Sanctuary 09-21
+
+</li>
+<li>Saint Seiya Hades Sanctuary 10
+
+</li>
+<li>The 4 stories we tell ourselves about death
+
+</li>
+<li>The Denial of Death (Ernest Becker)
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_48" class="foldclosed" onClick="show_folder('1_48')" style="POSITION: absolute">+</span> <span id="hide1_48" class="foldopened" onClick="hide_folder('1_48')">-</span>
+difficult is closer to the truth
+<ul id="fold1_48" style="POSITION: relative; VISIBILITY: visible;"><li>Eroica - The Movie ( BBC - 2003 )
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_49" class="foldclosed" onClick="show_folder('1_49')" style="POSITION: absolute">+</span> <span id="hide1_49" class="foldopened" onClick="hide_folder('1_49')">-</span>
+demoScene
+<ul id="fold1_49" style="POSITION: relative; VISIBILITY: visible;"><li>Moleman 2 - Demoscene - The Art of the Algorithms (2012)
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_50" class="foldclosed" onClick="show_folder('1_50')" style="POSITION: absolute">+</span> <span id="hide1_50" class="foldopened" onClick="hide_folder('1_50')">-</span>
+because its hard
+<ul id="fold1_50" style="POSITION: relative; VISIBILITY: visible;"><li>For All Mankind 1989 Dvdrip Xvid Int-Newmov
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_51" class="foldclosed" onClick="show_folder('1_51')" style="POSITION: absolute">+</span> <span id="hide1_51" class="foldopened" onClick="hide_folder('1_51')">-</span>
+inLove
+<ul id="fold1_51" style="POSITION: relative; VISIBILITY: visible;"><li><p>Gamer have multiple parners to be in love with so they also, once the gamer gets a partner the gamer must keeps the happy or the will leave the gamer, a game about love, jelousness, loss, relationships
+<p><span id="show1_51_1" class="foldclosed" onClick="show_folder('1_51_1')" style="POSITION: absolute">+</span> <span id="hide1_51_1" class="foldopened" onClick="hide_folder('1_51_1')">-</span>
+video
+<ul id="fold1_51_1" style="POSITION: relative; VISIBILITY: visible;"><li>Rune Factory OP Collection _ &#12523;&#12540;&#12531;&#12501;&#12449;&#12463;&#12488;&#12522;&#12540;OP&#38598; (1, 2, F, 3, O, 4)
+
+</li>
+
+</ul></li>
+</ul>
+</li>
+<li><span id="show1_52" class="foldclosed" onClick="show_folder('1_52')" style="POSITION: absolute">+</span> <span id="hide1_52" class="foldopened" onClick="hide_folder('1_52')">-</span>
+gameInception
+<ul id="fold1_52" style="POSITION: relative; VISIBILITY: visible;"><li>game inside a game
+
+</li>
+<li>instead of using music or videos for making levels games are used
+
+</li>
+<li>like a nes game, the graphics pallete, music, sound effects are taken to make a level
+
+</li>
+<li><span id="show1_52_1" class="foldclosed" onClick="show_folder('1_52_1')" style="POSITION: absolute">+</span> <span id="hide1_52_1" class="foldopened" onClick="hide_folder('1_52_1')">-</span>
+video
+<ul id="fold1_52_1" style="POSITION: relative; VISIBILITY: visible;"><li>Nintendo audio played by player piano and robotic percussion
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span id="show1_53" class="foldclosed" onClick="show_folder('1_53')" style="POSITION: absolute">+</span> <span id="hide1_53" class="foldopened" onClick="hide_folder('1_53')">-</span>
+brotherhood
+<ul id="fold1_53" style="POSITION: relative; VISIBILITY: visible;"><li>Sebastian Junger_ Why veterans miss war
+
+</li>
+<li>Simon Sinek_ Why good leaders make you feel safe
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_54" class="foldclosed" onClick="show_folder('1_54')" style="POSITION: absolute">+</span> <span id="hide1_54" class="foldopened" onClick="hide_folder('1_54')">-</span>
+gender
+<ul id="fold1_54" style="POSITION: relative; VISIBILITY: visible;"><li>Discuss gender stereotypes, its not about gnder its about personality
+
+</li>
+<li><span id="show1_54_1" class="foldclosed" onClick="show_folder('1_54_1')" style="POSITION: absolute">+</span> <span id="hide1_54_1" class="foldopened" onClick="hide_folder('1_54_1')">-</span>
+video
+<ul id="fold1_54_1" style="POSITION: relative; VISIBILITY: visible;"><li>Ms. Male Character - Tropes vs Women in Video Games
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span id="show1_55" class="foldclosed" onClick="show_folder('1_55')" style="POSITION: absolute">+</span> <span id="hide1_55" class="foldopened" onClick="hide_folder('1_55')">-</span>
+scale
+<ul id="fold1_55" style="POSITION: relative; VISIBILITY: visible;"><li><span id="show1_55_1" class="foldclosed" onClick="show_folder('1_55_1')" style="POSITION: absolute">+</span> <span id="hide1_55_1" class="foldopened" onClick="hide_folder('1_55_1')">-</span>
+video
+<ul id="fold1_55_1" style="POSITION: relative; VISIBILITY: visible;"><li>Powers Of Ten (1977)
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span id="show1_56" class="foldclosed" onClick="show_folder('1_56')" style="POSITION: absolute">+</span> <span id="hide1_56" class="foldopened" onClick="hide_folder('1_56')">-</span>
+nightmare
+<ul id="fold1_56" style="POSITION: relative; VISIBILITY: visible;"><li>zombie-vampire-bakemono beings populate the land scared of light you must defeat them
+
+</li>
+<li>A masked leader you must defeat
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_57" class="foldclosed" onClick="show_folder('1_57')" style="POSITION: absolute">+</span> <span id="hide1_57" class="foldopened" onClick="hide_folder('1_57')">-</span>
+recurrent nightmares
+<ul id="fold1_57" style="POSITION: relative; VISIBILITY: visible;"><li><p>games about my recurrent nightmares
+<p>like my feet and body growing without control filling the room
+<p>like running away from monsters until i hide under the bed room, then i realize that its a dream and then confront the monsters
+</li>
+</ul>
+</li>
+<li>discapacity
+
+</li>
+<li>brains
+
+</li>
+<li>slow-mo
+
+</li>
+<li>ants
+
+</li>
+<li>vacum
+
+</li>
+<li>13F
+
+</li>
+<li>crowd
+
+</li>
+<li>elphant
+
+</li>
+<li><span id="show1_58" class="foldclosed" onClick="show_folder('1_58')" style="POSITION: absolute">+</span> <span id="hide1_58" class="foldopened" onClick="hide_folder('1_58')">-</span>
+luca
+<ul id="fold1_58" style="POSITION: relative; VISIBILITY: visible;"><li><span id="show1_58_1" class="foldclosed" onClick="show_folder('1_58_1')" style="POSITION: absolute">+</span> <span id="hide1_58_1" class="foldopened" onClick="hide_folder('1_58_1')">-</span>
+level
+<ul id="fold1_58_1" style="POSITION: relative; VISIBILITY: visible;"><li>DNA
+<ul><li>puzzle level to red a DNA sequence and convert it to a protein
+
+</li>
+
+</ul>
+</li>
+<li>Cell
+<ul><li>combat an bacteria infection
+
+</li>
+
+</ul>
+</li>
+<li>Neuron
+<ul><li>store a new memory
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span id="show1_58_2" class="foldclosed" onClick="show_folder('1_58_2')" style="POSITION: absolute">+</span> <span id="hide1_58_2" class="foldopened" onClick="hide_folder('1_58_2')">-</span>
+_
+<ul id="fold1_58_2" style="POSITION: relative; VISIBILITY: visible;"><li>history of evolution
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_58_3" class="foldclosed" onClick="show_folder('1_58_3')" style="POSITION: absolute">+</span> <span id="hide1_58_3" class="foldopened" onClick="hide_folder('1_58_3')">-</span>
+intro
+<ul id="fold1_58_3" style="POSITION: relative; VISIBILITY: visible;"><li>make sun
+
+</li>
+<li>make planets
+
+</li>
+<li>collision
+
+</li>
+<li>planet earth
+
+</li>
+<li>zoom in to new planet
+
+</li>
+<li>make starfield
+<ul><li>create skybox
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span id="show1_58_4" class="foldclosed" onClick="show_folder('1_58_4')" style="POSITION: absolute">+</span> <span id="hide1_58_4" class="foldopened" onClick="hide_folder('1_58_4')">-</span>
+main
+<ul id="fold1_58_4" style="POSITION: relative; VISIBILITY: visible;"><li>level selector
+
+</li>
+<li>check saveGame and load it, otherwise go to intro
+<ul><li>placeholders
+
+</li>
+
+</ul>
+</li>
+<li>animate logo
+
+</li>
+<li>logo
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_58_5" class="foldclosed" onClick="show_folder('1_58_5')" style="POSITION: absolute">+</span> <span id="hide1_58_5" class="foldopened" onClick="hide_folder('1_58_5')">-</span>
+life
+<ul id="fold1_58_5" style="POSITION: relative; VISIBILITY: visible;"><li>puzzle level to duplicate DNA on life game
+<ul><li>read about DNA duplication
+
+</li>
+<li>decide on puzzle mechanics
+
+</li>
+<li>draw or remix assets
+
+</li>
+<li>program logic
+
+</li>
+<li>iterate to a basic version
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span id="show1_58_6" class="foldclosed" onClick="show_folder('1_58_6')" style="POSITION: absolute">+</span> <span id="hide1_58_6" class="foldopened" onClick="hide_folder('1_58_6')">-</span>
+s.
+<ul id="fold1_58_6" style="POSITION: relative; VISIBILITY: visible;"><li>gene
+<ul><li>unity based game on learned aspects
+
+</li>
+<li>poly-nucleotide ( nucleotide polymers ) ( information )
+<ul><li>nucleotide
+
+</li>
+
+</ul>
+</li>
+<li>DNA
+<ul><li>stores
+<ul><li>genes
+
+</li>
+<li>meta-information about genes
+
+</li>
+
+</ul>
+</li>
+<li>is read by
+<ul><li>mRNA
+<ul><li>stores fragments of DNA
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li>is processed by
+<ul><li>tRNA
+<ul><li>carries aminoacid
+
+</li>
+
+</ul>
+</li>
+<li>rRNA
+<ul><li>joins aminoacid in tRNA acording to mRNA forming proteins
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li>protein ( amino-acid polymers ) ( action )
+<ul><li>amino-acid
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li>cell
+<ul><li>strucutre
+
+</li>
+<li>organelles
+
+</li>
+
+</ul>
+</li>
+<li>neuron
+<ul><li>Cellular neuroscience
+
+</li>
+<li>Neural development
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_58_6_1" class="foldclosed" onClick="show_folder('1_58_6_1')" style="POSITION: absolute">+</span> <span id="hide1_58_6_1" class="foldopened" onClick="hide_folder('1_58_6_1')">-</span>
+brain
+<ul id="fold1_58_6_1" style="POSITION: relative; VISIBILITY: visible;"><li>artificialbrains.com
+<ul><li>openWorm
+
+</li>
+<li>openCog
+
+</li>
+<li>SyNAPSE
+
+</li>
+
+</ul>
+</li>
+<li>topDown approaches
+<ul><li>henryMarkram2009
+
+</li>
+<li>quantumBrain - a recurrent quantum neural network model to describe eye tracking of moving targets
+
+</li>
+<li>fourier neural networks
+
+</li>
+<li>artificial intelligence and molecular biology - lawrence hunter
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span id="show1_58_6_2" class="foldclosed" onClick="show_folder('1_58_6_2')" style="POSITION: absolute">+</span> <span id="hide1_58_6_2" class="foldopened" onClick="hide_folder('1_58_6_2')">-</span>
+life
+<ul id="fold1_58_6_2" style="POSITION: relative; VISIBILITY: visible;"><li>animal require live to life, plants don't
+
+</li>
+<li>development of neural network theory for artificial life
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li>luca
+<ul><li>last universal common ancestor - LUCA
+
+</li>
+<li>video
+<ul><li>Jim Al-Khalili - Quantum Life_ How Physics Can Revolutionise Biology
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span id="show1_59" class="foldclosed" onClick="show_folder('1_59')" style="POSITION: absolute">+</span> <span id="hide1_59" class="foldopened" onClick="hide_folder('1_59')">-</span>
+<span style="font-family: SansSerif, sans-serif; ">seconds of Life</span>
+<ul id="fold1_59" style="POSITION: relative; VISIBILITY: visible;"><li><span style="font-family: SansSerif, sans-serif; ">minigames</span>
+<ul><li>that last a second
+<ul><li>every second the player is given a represntation of the current second to archive points or the goal
+
+</li>
+
+</ul>
+</li>
+<li>that interact with past second frezzed by the second wave
+
+</li>
+
+</ul>
+</li>
+<li>second wave
+<ul><li><span style="font-family: SansSerif, sans-serif; font-weight: bold; ">Every time of the game, a bar passes the screen, on one second, all the time</span>
+
+</li>
+<li>wave that erases the second before
+
+</li>
+<li>make thing in the past
+<ul><li><span style="font-family: SansSerif, sans-serif; ">&#13;&#xa;    <p>&#13;&#xa;      frezes whatever touches making it unchangeable like the <i><b>PAST</b></i>&#13;&#xa;    </p>&#13;&#xa;  </span>
+</li>
+</ul>
+</li>
+<li>heart beat like sound to represent a second or a heart beat, should be very subtle
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_59_1" class="foldclosed" onClick="show_folder('1_59_1')" style="POSITION: absolute">+</span> <span id="hide1_59_1" class="foldopened" onClick="hide_folder('1_59_1')">-</span>
+time
+<ul id="fold1_59_1" style="POSITION: relative; VISIBILITY: visible;"><li>past
+<ul><li>gray, forever stopped
+
+</li>
+
+</ul>
+</li>
+<li>present
+<ul><li>normal speed, fewer colors
+
+</li>
+
+</ul>
+</li>
+<li>future
+<ul><li>ever changing, multiple colors, fast moving
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li>_idea
+
+</li>
+<li>characteristics
+<ul><li>puzzle game
+
+</li>
+<li>to know the value of our time alive
+
+</li>
+<li>physicBased
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span id="show1_60" class="foldclosed" onClick="show_folder('1_60')" style="POSITION: absolute">+</span> <span id="hide1_60" class="foldopened" onClick="hide_folder('1_60')">-</span>
+<span style="font-family: SansSerif, sans-serif; ">planetHOPE</span>
+<ul id="fold1_60" style="POSITION: relative; VISIBILITY: visible;"><li><span style="font-family: SansSerif, sans-serif; ">start</span>
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_61" class="foldclosed" onClick="show_folder('1_61')" style="POSITION: absolute">+</span> <span id="hide1_61" class="foldopened" onClick="hide_folder('1_61')">-</span>
+attackOnTitan
+<ul id="fold1_61" style="POSITION: relative; VISIBILITY: visible;"><li>&#21213;&#12390;&#12394;&#12365;&#12419;&#8230;&#27515;&#12396;&#8230;&#21213;&#12390;&#12400;&#29983;&#12365;&#12427;&#8230;&#25126;&#12431;&#12394;&#12369;&#12428;&#12400;&#21213;&#12390;&#12394;&#12356;&#8230;
+<ul><li>fight or die, win and live, the only way to win is to fight
+
+</li>
+<li>if I can't, I die, but if I win, I live, I can't win unless I fight
+
+</li>
+<li>if you are not willing to give anything, you can change nothing
+
+</li>
+<li>as long as you dont give up, defeat is not certain
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</li>
+<li><span id="show1_62" class="foldclosed" onClick="show_folder('1_62')" style="POSITION: absolute">+</span> <span id="hide1_62" class="foldopened" onClick="hide_folder('1_62')">-</span>
+we just dont die, we are killed
+<ul id="fold1_62" style="POSITION: relative; VISIBILITY: visible;"><li>killed by sickness
+
+</li>
+<li>killed by accident
+
+</li>
+<li>old age make us weaker but dont kill us
+
+</li>
+
+</ul>
+</li>
+<li><span id="show1_63" class="foldclosed" onClick="show_folder('1_63')" style="POSITION: absolute">+</span> <span id="hide1_63" class="foldopened" onClick="hide_folder('1_63')">-</span>
+dreams
+<ul id="fold1_63" style="POSITION: relative; VISIBILITY: visible;"><li><p>like inception a dream undet a dream, the player upload or its presented with random images, these are used to make the dreams
+</li>
+</ul>
+</li>
+<li>quanta
+
+</li>
+
+</ul><SCRIPT type="text/javascript">
+fold_document();
+</SCRIPT>
+</body>
+</html>
